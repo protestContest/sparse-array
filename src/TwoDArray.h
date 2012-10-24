@@ -1,5 +1,5 @@
-#ifndef __QUEUE_P_H__
-#define __QUEUE_P_H__
+#ifndef __ARRAY_P_H__
+#define __ARRAY_P_H__
 
 template <typename T>
 class TwoDArray {
