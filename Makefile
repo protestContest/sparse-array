@@ -28,3 +28,4 @@ $(BUILD):
 clean:
 	rm -rf build/*
 	cd $(GTEST)/make && $(MAKE) clean
+	cd $(SRC)/ArrayArray && $(MAKE) clean
