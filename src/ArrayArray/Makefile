@@ -1,0 +1,8 @@
+CC = g++
+CFLAGS = -Wall -Wextra
+
+TwoDArray.o: TwoDArray.h TwoDArray.cpp
+	$(CC) $(CFLAGS) -c TwoDArray.cpp -o TwoDArray.o
+
+clean:
+	rm -rf TwoDArray.o
