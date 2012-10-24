@@ -3,6 +3,9 @@
 
 template <typename T>
 class TwoDArray {
+  private:
+    T** array;
+
   public:
     TwoDArray<T>(int r, int c, T def);
     ~TwoDArray<T>();
