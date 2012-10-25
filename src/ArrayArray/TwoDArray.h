@@ -5,6 +5,9 @@ template <typename T>
 class TwoDArray {
   private:
     T** array;
+    int rows;
+    int cols;
+    T def_value;
 
   public:
     TwoDArray<T>(int r, int c, T def);
