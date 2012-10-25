@@ -40,6 +40,7 @@ T TwoDArray<T>::access(int r, int c) {
     assert(r > 0 && r < rows);
     assert(c > 0 && c < cols);
 
+    return array[r][c];
 }
 
 template <typename T>
