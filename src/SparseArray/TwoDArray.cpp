@@ -57,6 +57,8 @@ void TwoDArray<T>::insert(int r, int c, T value) {
     assert(r >= 0 && r < numRows);
     assert(c >= 0 && c < numCols);
 
+    if (value == def_value) return;
+
     Node<T>** rowCur = &(*rows)[r];
     while ( *rowCur != 0 && (*rowCur)->getCol() < c ) {
         Node<T>* temp = (*rowCur)->getRight();
@@ -100,7 +102,16 @@ T TwoDArray<T>::access(int r, int c) {
     assert(r >= 0 && r < numRows);
     assert(c >= 0 && c < numCols);
 
-    return 0;
+    Node<T>** cur = &(*rows)[r];
+    while ((*cur) != 0 && (*cur)->getCol() != c) {
+        Node<T>* temp = (*cur)->getRight();
+        cur = &temp;
+    }
+    if (*cur == 0) {
+        return def_value;
+    }
+
+    return (*cur)->getValue();
 }
 
 template <typename T>
@@ -114,6 +125,12 @@ void TwoDArray<T>::remove(int r, int c) {
 
 template <typename T>
 void TwoDArray<T>::print() {
+    for (int i = 0; i < numRows; ++i) {
+        for (int j = 0; j < numCols; ++j) {
+            cout << access(i, j) << " ";
+        }
+        cout << endl;
+    }
 }
 
 template <typename T>
