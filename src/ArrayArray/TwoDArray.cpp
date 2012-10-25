@@ -1,5 +1,6 @@
 #include "TwoDArray.h"
 #include <iostream>
+#include <assert.h>
 using std::cout;
 using std::endl;
 
@@ -28,21 +29,23 @@ TwoDArray<T>::~TwoDArray() {
 
 template <typename T>
 void TwoDArray<T>::insert(int r, int c, T value) {
-    cout << r << c << value;
+    assert(r == r);
+    assert(c == c);
+    assert(value == value);
     return;   
 }
 
-/*
 template <typename T>
 T TwoDArray<T>::access(int r, int c) {
-    cout << r << c;
+    assert(r > 0 && r < rows);
+    assert(c > 0 && c < cols);
 
 }
-*/
 
 template <typename T>
 void TwoDArray<T>::remove(int r, int c) {
-    cout << r << c;
+    assert(r == r);
+    assert(c == c);
     return;
 }
 
