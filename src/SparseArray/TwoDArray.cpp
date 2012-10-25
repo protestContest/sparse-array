@@ -59,21 +59,25 @@ void TwoDArray<T>::insert(int r, int c, T value) {
 
     if (value == def_value) return;
 
+    // find row node before insert
     Node<T>** rowCur = &(*rows)[r];
     while ( *rowCur != 0 && (*rowCur)->getCol() < c ) {
         Node<T>* temp = (*rowCur)->getRight();
         rowCur = &temp;
     }
+    // get row node after insert
     Node<T>* nextRight = 0;
     if ((*rowCur) != 0) {
         nextRight = (*rowCur)->getRight();
     } 
 
+    // find col node before insert
     Node<T>** colCur = &(*cols)[c];
     while ( *colCur != 0 && (*colCur)->getRow() < r) {
         Node<T>* temp = (*colCur)->getDown();
         colCur = &temp;
     }
+    // get col node after insert
     Node<T>* nextDown = 0;
     if ((*colCur) != 0) {
         nextDown = (*colCur)->getDown();
@@ -119,6 +123,12 @@ void TwoDArray<T>::remove(int r, int c) {
     assert(r >= 0 && r < numRows);
     assert(c >= 0 && c < numCols);
 
+    Node<T>** cur = &(*rows)[r];
+    while ((*cur) != 0 && (*cur)->getCol() < c) {
+        Node<T>* next = (*cur)->getRight();
+        cur = &next;
+    }
+    // TODO: finish remove
 
     return;
 }
