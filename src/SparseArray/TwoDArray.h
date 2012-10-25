@@ -2,15 +2,18 @@
 #define __ARRAY_H__
 
 #include <vector>
+#include "Node.h"
 using std::vector;
 
 template <typename T>
 class TwoDArray {
   private:
-    vector< vector<T> > array;
-    int rows;
-    int cols;
+    int numRows;
+    int numCols;
     T def_value;
+
+    vector< Node<T>* >* rows;
+    vector< Node<T>* >* cols;
 
   public:
     TwoDArray<T>(int r, int c, T def);

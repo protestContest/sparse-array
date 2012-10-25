@@ -13,69 +13,85 @@ template <typename T>
 TwoDArray<T>::TwoDArray(int r, int c, T def) {
     assert(r > 0);
     assert(c > 0);
-    rows = r;
-    cols = c;
+    numRows = r;
+    numCols = c;
     def_value = def;
 
-    for (int i = 0; i < rows; ++i) {
-        vector<T> row;
-        for (int j = 0; j < cols; ++j) {
-            row.push_back(def_value);
-        }
-        array.push_back(row);
+    rows = new vector< Node<T>* >;
+    for (int i = 0; i < numRows; ++i) {
+        rows->push_back(0);
+    }
+
+    cols = new vector< Node<T>* >;
+    for (int i = 0; i < numCols; ++i) {
+        cols->push_back(0);
     }
 }
 
 template <typename T>
 TwoDArray<T>::~TwoDArray() {
+    delete rows;
+    delete cols;
 }
 
 template <typename T>
 void TwoDArray<T>::insert(int r, int c, T value) {
-    assert(r >= 0 && r < rows);
-    assert(c >= 0 && c < cols);
+    assert(r >= 0 && r < numRows);
+    assert(c >= 0 && c < numCols);
 
-    array[r][c] = value;
+    Node<T>** rowCur = &(*rows)[r];
+    while ( *rowCur != 0 && (*rowCur)->getCol() < c ) {
+        Node<T>* temp = (*rowCur)->getRight();
+        rowCur = &temp;
+    }
+    Node<T>* nextRight = (*rowCur)->getRight();
+
+    Node<T>** colCur = &(*cols)[c];
+    while ( *colCur != 0 && (*colCur)->getRow() < r) {
+        Node<T>* temp = (*colCur)->getDown();
+        colCur = &temp;
+    }
+    Node<T>* nextDown = (*colCur)->getDown();
+
+    Node<T>* newNode = new Node<T>(r,c, value);
+    newNode->setRight(nextRight);
+    newNode->setDown(nextDown);
+
+    (*rowCur)->setRight(newNode);
+    (*colCur)->setDown(newNode);
 
     return;   
 }
 
 template <typename T>
 T TwoDArray<T>::access(int r, int c) {
-    assert(r >= 0 && r < rows);
-    assert(c >= 0 && c < cols);
+    assert(r >= 0 && r < numRows);
+    assert(c >= 0 && c < numCols);
 
-    return array[r][c];
+    return 0;
 }
 
 template <typename T>
 void TwoDArray<T>::remove(int r, int c) {
-    assert(r >= 0 && r < rows);
-    assert(c >= 0 && c < cols);
+    assert(r >= 0 && r < numRows);
+    assert(c >= 0 && c < numCols);
 
-    array[r][c] = def_value;
 
     return;
 }
 
 template <typename T>
 void TwoDArray<T>::print() {
-    for (int i = 0; i < rows; ++i) {
-        for (int j = 0; j < cols; ++j) {
-            cout << array[i][j] << " ";
-        }
-        cout << endl;
-    }
 }
 
 template <typename T>
 int TwoDArray<T>::getNumRows() {
-    return rows;
+    return numRows;
 }
 
 template <typename T>
 int TwoDArray<T>::getNumCols() {
-    return cols;
+    return numCols;
 }
 
 template class TwoDArray<int>;
