@@ -23,6 +23,43 @@ TEST(ArrayTest, Constructor) {
     delete sa2;
 }
 
+TEST(ArrayTest, insert) {
+    TwoDArray<int>* ia = new TwoDArray<int>(14, 15, 0);
+    ia->insert(2,3, 7);
+    ia->insert(3,2, 14);
+    ia->insert(13,14, 100);
+
+    EXPECT_EQ(ia->access(2,3), 7);
+    EXPECT_EQ(ia->access(3,2), 14);
+    EXPECT_EQ(ia->access(13,14), 100);
+
+    delete ia;
+
+
+    TwoDArray<double>* da = new TwoDArray<double>(14, 15, 0.0);
+    da->insert(2,3, .7);
+    da->insert(3,2, 1.4);
+    da->insert(13,14, 100.10);
+
+    EXPECT_EQ(da->access(2,3), .7);
+    EXPECT_EQ(da->access(3,2), 1.4);
+    EXPECT_EQ(da->access(13,14), 100.1);
+
+    delete da;
+
+
+    TwoDArray<string>* sa = new TwoDArray<string>(14, 15, "");
+    sa->insert(2,3, "hello");
+    sa->insert(3,2, "world");
+    sa->insert(13,14, "!");
+
+    EXPECT_EQ(sa->access(2,3), "hello");
+    EXPECT_EQ(sa->access(3,2), "world");
+    EXPECT_EQ(sa->access(13,14), "!");
+
+    delete sa;
+}
+
 TEST(ArrayTest, access) {
     TwoDArray<int>* ia = new TwoDArray<int>(12,12, 5);
 
@@ -53,6 +90,48 @@ TEST(ArrayTest, access) {
     delete sa;
 }
 
+TEST(ArrayTest, remove) {
+    TwoDArray<int>* ia = new TwoDArray<int>(21,12, 3);
+    EXPECT_EQ(ia->access(4,5), 3);
+    EXPECT_EQ(ia->access(15,10), 3);
+    ia->insert(4,5, 1024);
+    ia->insert(15,10, 312);
+    EXPECT_EQ(ia->access(4,5), 1024);
+    EXPECT_EQ(ia->access(15,10), 312);
+    ia->remove(4,5);
+    EXPECT_EQ(ia->access(4,5), 3);
+    ia->remove(15,10);
+    EXPECT_EQ(ia->access(15,10), 3);
+    delete ia;
+
+    TwoDArray<double>* da = new TwoDArray<double>(21,12, 1.24);
+    EXPECT_EQ(da->access(4,5), 1.24);
+    EXPECT_EQ(da->access(15,10), 1.24);
+    da->insert(4,5, 10.24);
+    da->insert(15,10, 3.12);
+    EXPECT_EQ(da->access(4,5), 10.24);
+    EXPECT_EQ(da->access(15,10), 3.12);
+    da->remove(4,5);
+    EXPECT_EQ(da->access(4,5), 1.24);
+    da->remove(15,10);
+    EXPECT_EQ(da->access(15,10), 1.24);
+    delete da;
+
+    TwoDArray<string>* sa = new TwoDArray<string>(21,12, "asdf");
+    EXPECT_EQ(sa->access(4,5), "asdf");
+    EXPECT_EQ(sa->access(15,10), "asdf");
+    sa->insert(4,5, "something");
+    sa->insert(15,10, "else");
+    EXPECT_EQ(sa->access(4,5), "something");
+    EXPECT_EQ(sa->access(15,10), "else");
+    sa->remove(4,5);
+    EXPECT_EQ(sa->access(4,5), "asdf");
+    sa->remove(15,10);
+    EXPECT_EQ(sa->access(15,10), "asdf");
+    delete sa;
+
+}
+
 TEST(ArrayTest, print) {
     TwoDArray<int>* ia = new TwoDArray<int>(3, 7, 0);
     ia->print();
@@ -77,4 +156,9 @@ TEST(ArrayTest, getSize) {
     EXPECT_EQ(da->getNumCols(), 38);
     EXPECT_EQ(da->getNumRows(), 16);
     delete da;
+
+    TwoDArray<string>* sa = new TwoDArray<string>(40,12, "strings");
+    EXPECT_EQ(sa->getNumCols(), 12);
+    EXPECT_EQ(sa->getNumRows(), 40);
+    delete sa;
 }
