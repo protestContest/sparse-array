@@ -8,7 +8,7 @@ GTEST_MAINA = $(GTEST)/make/gtest_main.a
 GTEST_INCLUDES = -I$(GTEST) -I$(GTEST)/include
 
 CC = g++
-CFLAGS = -Wall -Wextra
+CFLAGS = -Wall -Wextra -ggdb
 
 ARRAY_ARRAY = $(SRC)/ArrayArray/TwoDArray.o
 VECTOR_ARRAY = $(SRC)/VectorArray/TwoDArray.o

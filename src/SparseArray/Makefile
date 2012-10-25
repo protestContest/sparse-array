@@ -1,5 +1,5 @@
 CC = g++
-CFLAGS = -Wall -Wextra
+CFLAGS = -Wall -Wextra -ggdb
 
 TwoDArray.o: TwoDArray.h TwoDArray.cpp Node.o
 	$(CC) $(CFLAGS) -c TwoDArray.cpp -o TwoDArray.o
