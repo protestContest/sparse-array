@@ -27,6 +27,26 @@ TwoDArray<T>::~TwoDArray() {
 }
 
 template <typename T>
+void TwoDArray<T>::insert(int r, int c, T value) {
+    cout << r << c << value;
+    return;   
+}
+
+/*
+template <typename T>
+T TwoDArray<T>::access(int r, int c) {
+    cout << r << c;
+
+}
+*/
+
+template <typename T>
+void TwoDArray<T>::remove(int r, int c) {
+    cout << r << c;
+    return;
+}
+
+template <typename T>
 void TwoDArray<T>::print() {
     for (int i = 0; i < rows; ++i) {
         for (int j = 0; j < cols; ++j) {
@@ -34,6 +54,16 @@ void TwoDArray<T>::print() {
         }
         cout << endl;
     }
+}
+
+template <typename T>
+int TwoDArray<T>::getNumRows() {
+    return 0;
+}
+
+template <typename T>
+int TwoDArray<T>::getNumCols() {
+    return 0;
 }
 
 template class TwoDArray<int>;
