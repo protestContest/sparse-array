@@ -21,12 +21,6 @@ TEST(ArrayTest, Constructor) {
 
 }
 
-TEST(ArrayTest, print) {
-    TwoDArray<int>* ia = new TwoDArray<int>(3, 7, 0);
-    ia->print();
-    delete ia;
-}
-
 TEST(ArrayTest, access) {
     TwoDArray<int>* ia = new TwoDArray<int>(12,12, 5);
 
@@ -38,3 +32,10 @@ TEST(ArrayTest, access) {
 
     delete ia;
 }
+
+TEST(ArrayTest, print) {
+    TwoDArray<int>* ia = new TwoDArray<int>(3, 7, 0);
+    ia->print();
+    delete ia;
+}
+
