@@ -21,3 +21,20 @@ TEST(ArrayTest, Constructor) {
 
 }
 
+TEST(ArrayTest, print) {
+    TwoDArray<int>* ia = new TwoDArray<int>(3, 7, 0);
+    ia->print();
+    delete ia;
+}
+
+TEST(ArrayTest, access) {
+    TwoDArray<int>* ia = new TwoDArray<int>(12,12, 5);
+
+    for (int i = 0; i < 12; ++i) {
+        for (int j = 0; j < 12; ++j) {
+            EXPECT_EQ(ia->access(i,j), 5);
+        }
+    }
+
+    delete ia;
+}
