@@ -7,6 +7,8 @@ TwoDArray.o: TwoDArray.h TwoDArray.cpp Node.o
 
 Node.o: Node.h Node.cpp
 	$(CC) $(CFLAGS) -c Node.cpp -o Node.o
+	cp Node.h ..
 
 clean:
 	rm -rf TwoDArray.o
+	rm -rf Node.o
