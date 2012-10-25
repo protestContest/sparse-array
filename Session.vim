@@ -58,18 +58,21 @@ endif
 set shortmess=aoO
 badd +7 src/ArrayArray/Makefile
 badd +73 ~/Projects/queues/Makefile
-badd +1 test/array_test.cpp
+badd +10 test/array_test.cpp
 badd +1 ~/Projects/queues/test/queue_test.cpp
 badd +3 .gitignore
 badd +1 src/TwoDArray.h
 badd +1 ~/Projects/queues/src/AQueue/AQueue.h
 badd +1 src/ArrayArray/TwoDArray.h
 badd +4 src/ArrayArray/TwoDArray.cpp
-badd +1 Makefile
+badd +17 Makefile
 badd +1 src/VectorArray/TwoDArray.h
 badd +13 src/VectorArray/TwoDArray.cpp
-badd +0 src/SparseArray/TwoDArray.h
-badd +0 src/SparseArray/TwoDArray.cpp
+badd +1 src/SparseArray/TwoDArray.h
+badd +1 src/SparseArray/TwoDArray.cpp
+badd +26 src/SparseArray/Node.h
+badd +40 src/SparseArray/Node.cpp
+badd +2 src/SparseArray/Makefile
 args src/ArrayArray/Makefile
 edit test/array_test.cpp
 set splitbelow splitright
@@ -93,9 +96,9 @@ exe '1resize ' . ((&lines * 23 + 24) / 48)
 exe 'vert 1resize ' . ((&columns * 85 + 85) / 170)
 exe '2resize ' . ((&lines * 22 + 24) / 48)
 exe 'vert 2resize ' . ((&columns * 85 + 85) / 170)
-exe '3resize ' . ((&lines * 23 + 24) / 48)
+exe '3resize ' . ((&lines * 1 + 24) / 48)
 exe 'vert 3resize ' . ((&columns * 84 + 85) / 170)
-exe '4resize ' . ((&lines * 22 + 24) / 48)
+exe '4resize ' . ((&lines * 44 + 24) / 48)
 exe 'vert 4resize ' . ((&columns * 84 + 85) / 170)
 argglobal
 let s:cpo_save=&cpo
@@ -245,15 +248,15 @@ setlocal nowinfixwidth
 setlocal wrap
 setlocal wrapmargin=0
 silent! normal! zE
-let s:l = 10 - ((2 * winheight(0) + 11) / 23)
+let s:l = 147 - ((20 * winheight(0) + 11) / 23)
 if s:l < 1 | let s:l = 1 | endif
 exe s:l
 normal! zt
-10
-normal! 04l
+147
+normal! 031l
 wincmd w
 argglobal
-edit Makefile
+edit src/SparseArray/Node.cpp
 let s:cpo_save=&cpo
 set cpo&vim
 imap <buffer> <RightMouse> <Plug>delimitMateMRightMouse
@@ -307,13 +310,13 @@ setlocal nobinary
 setlocal bufhidden=
 setlocal buflisted
 setlocal buftype=
-setlocal nocindent
+setlocal cindent
 setlocal cinkeys=0{,0},0),:,0#,!^F,o,O,e
 setlocal cinoptions=
 setlocal cinwords=if,else,while,do,for,switch
 setlocal colorcolumn=
-setlocal comments=sO:#\ -,mO:#\ \ ,b:#
-setlocal commentstring=#\ %s
+setlocal comments=sO:*\ -,mO:*\ \ ,exO:*/,s1:/*,mb:*,ex:*/,://
+setlocal commentstring=/*%s*/
 setlocal complete=.,w,b,u,t,i
 setlocal concealcursor=
 setlocal conceallevel=0
@@ -328,9 +331,9 @@ setlocal dictionary=
 setlocal nodiff
 setlocal equalprg=
 setlocal errorformat=
-setlocal noexpandtab
-if &filetype != 'make'
-setlocal filetype=make
+setlocal expandtab
+if &filetype != 'cpp'
+setlocal filetype=cpp
 endif
 setlocal foldcolumn=0
 setlocal foldenable
@@ -348,10 +351,10 @@ setlocal formatlistpat=^\\s*\\d\\+[\\]:.)}\\t\ ]\\s*
 setlocal grepprg=
 setlocal iminsert=0
 setlocal imsearch=0
-setlocal include=^\\s*include
+setlocal include=
 setlocal includeexpr=
-setlocal indentexpr=GetMakeIndent()
-setlocal indentkeys=!^F,o,O,<:>,=else,=endif
+setlocal indentexpr=
+setlocal indentkeys=0{,0},:,0#,!^F,o,O,e
 setlocal noinfercase
 setlocal iskeyword=@,48-57,_,192-255
 setlocal keywordprg=
@@ -366,7 +369,7 @@ setlocal nrformats=octal,hex
 set number
 setlocal number
 setlocal numberwidth=4
-setlocal omnifunc=
+setlocal omnifunc=ccomplete#Complete
 setlocal path=
 setlocal nopreserveindent
 setlocal nopreviewwindow
@@ -388,8 +391,8 @@ setlocal statusline=
 setlocal suffixesadd=
 setlocal swapfile
 setlocal synmaxcol=3000
-if &syntax != 'make'
-setlocal syntax=make
+if &syntax != 'cpp'
+setlocal syntax=cpp
 endif
 setlocal tabstop=4
 setlocal tags=
@@ -401,7 +404,7 @@ setlocal nowinfixwidth
 setlocal wrap
 setlocal wrapmargin=0
 silent! normal! zE
-let s:l = 31 - ((0 * winheight(0) + 11) / 22)
+let s:l = 31 - ((21 * winheight(0) + 11) / 22)
 if s:l < 1 | let s:l = 1 | endif
 exe s:l
 normal! zt
@@ -557,12 +560,12 @@ setlocal nowinfixwidth
 setlocal wrap
 setlocal wrapmargin=0
 silent! normal! zE
-let s:l = 11 - ((6 * winheight(0) + 11) / 23)
+let s:l = 32 - ((0 * winheight(0) + 0) / 1)
 if s:l < 1 | let s:l = 1 | endif
 exe s:l
 normal! zt
-11
-normal! 0
+32
+normal! 05l
 lcd ~/Projects/sparse-array
 wincmd w
 argglobal
@@ -714,22 +717,22 @@ setlocal nowinfixwidth
 setlocal wrap
 setlocal wrapmargin=0
 silent! normal! zE
-let s:l = 1 - ((0 * winheight(0) + 11) / 22)
+let s:l = 131 - ((29 * winheight(0) + 22) / 44)
 if s:l < 1 | let s:l = 1 | endif
 exe s:l
 normal! zt
-1
-normal! 0
+131
+normal! 025l
 lcd ~/Projects/sparse-array
 wincmd w
-3wincmd w
+4wincmd w
 exe '1resize ' . ((&lines * 23 + 24) / 48)
 exe 'vert 1resize ' . ((&columns * 85 + 85) / 170)
 exe '2resize ' . ((&lines * 22 + 24) / 48)
 exe 'vert 2resize ' . ((&columns * 85 + 85) / 170)
-exe '3resize ' . ((&lines * 23 + 24) / 48)
+exe '3resize ' . ((&lines * 1 + 24) / 48)
 exe 'vert 3resize ' . ((&columns * 84 + 85) / 170)
-exe '4resize ' . ((&lines * 22 + 24) / 48)
+exe '4resize ' . ((&lines * 44 + 24) / 48)
 exe 'vert 4resize ' . ((&columns * 84 + 85) / 170)
 tabnext 1
 if exists('s:wipebuf')

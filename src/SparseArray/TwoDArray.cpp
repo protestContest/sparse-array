@@ -123,12 +123,27 @@ void TwoDArray<T>::remove(int r, int c) {
     assert(r >= 0 && r < numRows);
     assert(c >= 0 && c < numCols);
 
-    Node<T>** cur = &(*rows)[r];
-    while ((*cur) != 0 && (*cur)->getCol() < c) {
-        Node<T>* next = (*cur)->getRight();
-        cur = &next;
+    Node<T>** rowcur = &(*rows)[r];
+    while ((*rowcur) != 0 && (*rowcur)->getCol() < c) {
+        Node<T>* next = (*rowcur)->getRight();
+        rowcur = &next;
     }
-    // TODO: finish remove
+    if (*rowcur == 0) return;
+    Node<T>* nodeRight = (*rowcur)->getRight();
+
+    Node<T>** colcur = &(*cols)[c];
+    while ((*colcur) != 0 && (*colcur)->getRow() < r) {
+        Node<T>* next = (*colcur)->getDown();
+        colcur = &next;
+    }
+    assert(*colcur != 0);
+    assert(*colcur == *rowcur);
+    Node<T>* nodeDown = (*colcur)->getDown();
+
+    Node<T>* removeNode = (*rowcur);
+    delete removeNode;
+    (*rowcur) = nodeRight;
+    (*colcur) = nodeDown;
 
     return;
 }
