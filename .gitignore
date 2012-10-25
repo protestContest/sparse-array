@@ -3,3 +3,4 @@
 build/*
 *.a
 src/TwoDArray.h
+src/Node.h
