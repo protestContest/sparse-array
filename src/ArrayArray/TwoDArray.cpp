@@ -40,8 +40,8 @@ void TwoDArray<T>::insert(int r, int c, T value) {
 
 template <typename T>
 T TwoDArray<T>::access(int r, int c) {
-    assert(r > 0 && r < rows);
-    assert(c > 0 && c < cols);
+    assert(r >= 0 && r < rows);
+    assert(c >= 0 && c < cols);
 
     return array[r][c];
 }
@@ -65,12 +65,12 @@ void TwoDArray<T>::print() {
 
 template <typename T>
 int TwoDArray<T>::getNumRows() {
-    return 0;
+    return rows;
 }
 
 template <typename T>
 int TwoDArray<T>::getNumCols() {
-    return 0;
+    return cols;
 }
 
 template class TwoDArray<int>;

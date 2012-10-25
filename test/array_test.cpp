@@ -39,3 +39,10 @@ TEST(ArrayTest, print) {
     delete ia;
 }
 
+TEST(ArrayTest, getSize) {
+    TwoDArray<int>* ia = new TwoDArray<int>(5, 4, 1);
+    EXPECT_EQ(ia->getNumRows(), 5);
+    EXPECT_EQ(ia->getNumCols(), 4);
+
+    delete ia;
+}
