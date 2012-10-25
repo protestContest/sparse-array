@@ -25,20 +25,26 @@ vector_test: $(TEST)/array_test.cpp $(GTEST_MAINA) $(BUILD) $(VECTOR_ARRAY)
 array_test: $(TEST)/array_test.cpp $(GTEST_MAINA) $(BUILD) $(ARRAY_ARRAY)
 	$(CC) $(CFLAGS) $(GTEST_INCLUDES) $(GTEST_MAINA) $(SRC_INCLUDES) $(ARRAY_ARRAY) $(TEST)/array_test.cpp -o $(BUILD)/array_test -pthread
 
+
+
 $(ARRAY_ARRAY): $(SRC)/ArrayArray/TwoDArray.cpp $(SRC)/ArrayArray/TwoDArray.h
 	cd $(SRC)/ArrayArray && $(MAKE)
 
 $(VECTOR_ARRAY): $(SRC)/VectorArray/TwoDArray.cpp $(SRC)/VectorArray/TwoDArray.h
 	cd $(SRC)/VectorArray && $(MAKE)
 
-$(SPARSE_ARRAY): $(SRC)/SparseArray/TwoDArray.cpp $(SRC)/SparseArray/TwoDArray.h
+$(SPARSE_ARRAY): $(SRC)/SparseArray/TwoDArray.cpp $(SRC)/SparseArray/TwoDArray.h $(SRC)/SparseArray/Node.h $(SRC)/SparseArray/Node.cpp
 	cd $(SRC)/SparseArray && $(MAKE)
+
+
 
 $(GTEST_MAINA): $(GTEST)/src/*.cc $(GTEST)/src/*.h
 	cd $(GTEST)/make && $(MAKE)
 
 $(BUILD):
 	mkdir -p build/
+
+
 
 clean:
 	rm -rf build/*
