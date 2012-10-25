@@ -17,6 +17,8 @@ NODE = $(SRC)/SparseArray/Node.o
 
 
 
+all: sparse_test vector_test array_test
+
 sparse_test: $(TEST)/array_test.cpp $(GTEST_MAINA) $(BUILD) $(SPARSE_ARRAY)
 	$(CC) $(CFLAGS) $(GTEST_INCLUDES) $(GTEST_MAINA) $(SRC_INCLUDES) $(SPARSE_ARRAY) $(NODE) $(TEST)/array_test.cpp -o $(BUILD)/sparse_test -pthread
 
