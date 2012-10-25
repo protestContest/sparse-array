@@ -34,9 +34,11 @@ TwoDArray<T>::~TwoDArray() {
 
 template <typename T>
 void TwoDArray<T>::insert(int r, int c, T value) {
-    assert(r == r);
-    assert(c == c);
-    assert(value == value);
+    assert(r >= 0 && r < rows);
+    assert(c >= 0 && c < cols);
+
+    array[r][c] = value;
+
     return;   
 }
 
