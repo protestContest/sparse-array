@@ -13,11 +13,12 @@ CFLAGS = -Wall -Wextra
 ARRAY_ARRAY = $(SRC)/ArrayArray/TwoDArray.o
 VECTOR_ARRAY = $(SRC)/VectorArray/TwoDArray.o
 SPARSE_ARRAY = $(SRC)/SparseArray/TwoDArray.o
+NODE = $(SRC)/SparseArray/Node.o
 
 
 
 sparse_test: $(TEST)/array_test.cpp $(GTEST_MAINA) $(BUILD) $(SPARSE_ARRAY)
-	$(CC) $(CFLAGS) $(GTEST_INCLUDES) $(GTEST_MAINA) $(SRC_INCLUDES) $(SPARSE_ARRAY) $(TEST)/array_test.cpp -o $(BUILD)/sparse_test -pthread
+	$(CC) $(CFLAGS) $(GTEST_INCLUDES) $(GTEST_MAINA) $(SRC_INCLUDES) $(SPARSE_ARRAY) $(NODE) $(TEST)/array_test.cpp -o $(BUILD)/sparse_test -pthread
 
 vector_test: $(TEST)/array_test.cpp $(GTEST_MAINA) $(BUILD) $(VECTOR_ARRAY)
 	$(CC) $(CFLAGS) $(GTEST_INCLUDES) $(GTEST_MAINA) $(SRC_INCLUDES) $(VECTOR_ARRAY) $(TEST)/array_test.cpp -o $(BUILD)/vector_test -pthread
