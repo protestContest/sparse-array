@@ -52,8 +52,11 @@ T TwoDArray<T>::access(int r, int c) {
 
 template <typename T>
 void TwoDArray<T>::remove(int r, int c) {
-    assert(r == r);
-    assert(c == c);
+    assert(r >= 0 && r < rows);
+    assert(c >= 0 && c < cols);
+
+    array[r][c] = def_value;
+
     return;
 }
 
