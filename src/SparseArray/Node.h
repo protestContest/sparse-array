@@ -5,16 +5,22 @@ template <typename T>
 class Node {
   private:
     T value;
+    int row;
+    int col;
     Node<T>* right;
     Node<T>* down;
 
   public:
-    Node<T>(T v);
+    Node<T>(int r, int c, T v);
     ~Node<T>();
 
     T getValue();
-    void setRight(const Node<T>* r);
-    void setDown(const Node<T>* d);
+    void setRight(Node<T>* r);
+    void setDown(Node<T>* d);
+    Node<T>* getRight();
+    Node<T>* getDown();
+    int getRow();
+    int getCol();
 };
 
 #endif
