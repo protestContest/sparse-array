@@ -1,4 +1,5 @@
 #include "TwoDArray.h"
+#include "Node.h"
 #include <iostream>
 #include <assert.h>
 #include <string>
