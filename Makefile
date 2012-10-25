@@ -33,6 +33,7 @@ $(BUILD):
 
 clean:
 	rm -rf build/*
+	rm -rf src/TwoDArray.h
 	cd $(GTEST)/make && $(MAKE) clean
 	cd $(SRC)/ArrayArray && $(MAKE) clean
 	cd $(SRC)/VectorArray && $(MAKE) clean
