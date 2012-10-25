@@ -12,6 +12,12 @@ CFLAGS = -Wall -Wextra
 
 ARRAY_ARRAY = $(SRC)/ArrayArray/TwoDArray.o
 VECTOR_ARRAY = $(SRC)/VectorArray/TwoDArray.o
+SPARSE_ARRAY = $(SRC)/SparseArray/TwoDArray.o
+
+
+
+sparse_test: $(TEST)/array_test.cpp $(GTEST_MAINA) $(BUILD) $(SPARSE_ARRAY)
+	$(CC) $(CFLAGS) $(GTEST_INCLUDES) $(GTEST_MAINA) $(SRC_INCLUDES) $(SPARSE_ARRAY) $(TEST)/array_test.cpp -o $(BUILD)/sparse_test -pthread
 
 vector_test: $(TEST)/array_test.cpp $(GTEST_MAINA) $(BUILD) $(VECTOR_ARRAY)
 	$(CC) $(CFLAGS) $(GTEST_INCLUDES) $(GTEST_MAINA) $(SRC_INCLUDES) $(VECTOR_ARRAY) $(TEST)/array_test.cpp -o $(BUILD)/vector_test -pthread
@@ -25,6 +31,9 @@ $(ARRAY_ARRAY): $(SRC)/ArrayArray/TwoDArray.cpp $(SRC)/ArrayArray/TwoDArray.h
 $(VECTOR_ARRAY): $(SRC)/VectorArray/TwoDArray.cpp $(SRC)/VectorArray/TwoDArray.h
 	cd $(SRC)/VectorArray && $(MAKE)
 
+$(SPARSE_ARRAY): $(SRC)/SparseArray/TwoDArray.cpp $(SRC)/SparseArray/TwoDArray.h
+	cd $(SRC)/SparseArray && $(MAKE)
+
 $(GTEST_MAINA): $(GTEST)/src/*.cc $(GTEST)/src/*.h
 	cd $(GTEST)/make && $(MAKE)
 
@@ -37,3 +46,4 @@ clean:
 	cd $(GTEST)/make && $(MAKE) clean
 	cd $(SRC)/ArrayArray && $(MAKE) clean
 	cd $(SRC)/VectorArray && $(MAKE) clean
+	cd $(SRC)/SparseArray && $(MAKE) clean
