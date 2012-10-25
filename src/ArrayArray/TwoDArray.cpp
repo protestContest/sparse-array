@@ -6,6 +6,9 @@ using std::endl;
 
 template <typename T>
 TwoDArray<T>::TwoDArray(int r, int c, T def) {
+    assert(r > 0);
+    assert(c > 0);
+
     rows = r;
     cols = c;
     def_value = def;
