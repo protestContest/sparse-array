@@ -138,10 +138,13 @@ TEST(ArrayTest, print) {
     delete ia;
 
     TwoDArray<double>* da = new TwoDArray<double>(2, 6, 1.2);
+    da->insert(1, 5, 3.7);
+    da->insert(0, 2, 0.9);
     da->print();
     delete da;
 
     TwoDArray<string>* sa = new TwoDArray<string>(1, 4, "test");
+    sa->insert(0,2, "sup dawg");
     sa->print();
     delete sa;
 }
