@@ -58,14 +58,18 @@ endif
 set shortmess=aoO
 badd +7 src/ArrayArray/Makefile
 badd +73 ~/Projects/queues/Makefile
-badd +0 test/array_test.cpp
+badd +1 test/array_test.cpp
 badd +1 ~/Projects/queues/test/queue_test.cpp
 badd +3 .gitignore
 badd +1 src/TwoDArray.h
 badd +1 ~/Projects/queues/src/AQueue/AQueue.h
-badd +18 src/ArrayArray/TwoDArray.h
-badd +0 src/ArrayArray/TwoDArray.cpp
+badd +1 src/ArrayArray/TwoDArray.h
+badd +4 src/ArrayArray/TwoDArray.cpp
 badd +1 Makefile
+badd +1 src/VectorArray/TwoDArray.h
+badd +13 src/VectorArray/TwoDArray.cpp
+badd +0 src/SparseArray/TwoDArray.h
+badd +0 src/SparseArray/TwoDArray.cpp
 args src/ArrayArray/Makefile
 edit test/array_test.cpp
 set splitbelow splitright
@@ -85,14 +89,14 @@ set nosplitbelow
 set nosplitright
 wincmd t
 set winheight=1 winwidth=1
-exe '1resize ' . ((&lines * 20 + 21) / 43)
-exe 'vert 1resize ' . ((&columns * 80 + 80) / 161)
-exe '2resize ' . ((&lines * 20 + 21) / 43)
-exe 'vert 2resize ' . ((&columns * 80 + 80) / 161)
-exe '3resize ' . ((&lines * 20 + 21) / 43)
-exe 'vert 3resize ' . ((&columns * 80 + 80) / 161)
-exe '4resize ' . ((&lines * 20 + 21) / 43)
-exe 'vert 4resize ' . ((&columns * 80 + 80) / 161)
+exe '1resize ' . ((&lines * 23 + 24) / 48)
+exe 'vert 1resize ' . ((&columns * 85 + 85) / 170)
+exe '2resize ' . ((&lines * 22 + 24) / 48)
+exe 'vert 2resize ' . ((&columns * 85 + 85) / 170)
+exe '3resize ' . ((&lines * 23 + 24) / 48)
+exe 'vert 3resize ' . ((&columns * 84 + 85) / 170)
+exe '4resize ' . ((&lines * 22 + 24) / 48)
+exe 'vert 4resize ' . ((&columns * 84 + 85) / 170)
 argglobal
 let s:cpo_save=&cpo
 set cpo&vim
@@ -241,12 +245,12 @@ setlocal nowinfixwidth
 setlocal wrap
 setlocal wrapmargin=0
 silent! normal! zE
-let s:l = 30 - ((8 * winheight(0) + 10) / 20)
+let s:l = 10 - ((2 * winheight(0) + 11) / 23)
 if s:l < 1 | let s:l = 1 | endif
 exe s:l
 normal! zt
-30
-normal! 05l
+10
+normal! 04l
 wincmd w
 argglobal
 edit Makefile
@@ -397,7 +401,7 @@ setlocal nowinfixwidth
 setlocal wrap
 setlocal wrapmargin=0
 silent! normal! zE
-let s:l = 31 - ((18 * winheight(0) + 10) / 20)
+let s:l = 31 - ((0 * winheight(0) + 11) / 22)
 if s:l < 1 | let s:l = 1 | endif
 exe s:l
 normal! zt
@@ -405,7 +409,7 @@ normal! zt
 normal! 0
 wincmd w
 argglobal
-edit src/ArrayArray/TwoDArray.h
+edit src/SparseArray/TwoDArray.h
 let s:cpo_save=&cpo
 set cpo&vim
 imap <buffer> <RightMouse> <Plug>delimitMateMRightMouse
@@ -553,16 +557,16 @@ setlocal nowinfixwidth
 setlocal wrap
 setlocal wrapmargin=0
 silent! normal! zE
-let s:l = 18 - ((17 * winheight(0) + 10) / 20)
+let s:l = 11 - ((6 * winheight(0) + 11) / 23)
 if s:l < 1 | let s:l = 1 | endif
 exe s:l
 normal! zt
-18
+11
 normal! 0
 lcd ~/Projects/sparse-array
 wincmd w
 argglobal
-edit ~/Projects/sparse-array/src/ArrayArray/TwoDArray.cpp
+edit ~/Projects/sparse-array/src/SparseArray/TwoDArray.cpp
 let s:cpo_save=&cpo
 set cpo&vim
 imap <buffer> <RightMouse> <Plug>delimitMateMRightMouse
@@ -710,22 +714,23 @@ setlocal nowinfixwidth
 setlocal wrap
 setlocal wrapmargin=0
 silent! normal! zE
-let s:l = 4 - ((3 * winheight(0) + 10) / 20)
+let s:l = 1 - ((0 * winheight(0) + 11) / 22)
 if s:l < 1 | let s:l = 1 | endif
 exe s:l
 normal! zt
-4
-normal! 010l
+1
+normal! 0
 lcd ~/Projects/sparse-array
 wincmd w
-exe '1resize ' . ((&lines * 20 + 21) / 43)
-exe 'vert 1resize ' . ((&columns * 80 + 80) / 161)
-exe '2resize ' . ((&lines * 20 + 21) / 43)
-exe 'vert 2resize ' . ((&columns * 80 + 80) / 161)
-exe '3resize ' . ((&lines * 20 + 21) / 43)
-exe 'vert 3resize ' . ((&columns * 80 + 80) / 161)
-exe '4resize ' . ((&lines * 20 + 21) / 43)
-exe 'vert 4resize ' . ((&columns * 80 + 80) / 161)
+3wincmd w
+exe '1resize ' . ((&lines * 23 + 24) / 48)
+exe 'vert 1resize ' . ((&columns * 85 + 85) / 170)
+exe '2resize ' . ((&lines * 22 + 24) / 48)
+exe 'vert 2resize ' . ((&columns * 85 + 85) / 170)
+exe '3resize ' . ((&lines * 23 + 24) / 48)
+exe 'vert 3resize ' . ((&columns * 84 + 85) / 170)
+exe '4resize ' . ((&lines * 22 + 24) / 48)
+exe 'vert 4resize ' . ((&columns * 84 + 85) / 170)
 tabnext 1
 if exists('s:wipebuf')
   silent exe 'bwipe ' . s:wipebuf
