@@ -15,6 +15,8 @@ class TwoDArray {
     vector< Node<T>* >* rows;
     vector< Node<T>* >* cols;
 
+    void deleteRow(Node<T>* node);
+
   public:
     TwoDArray<T>(int r, int c, T def);
     ~TwoDArray<T>();
